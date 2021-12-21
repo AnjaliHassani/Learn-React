@@ -18,8 +18,16 @@ function RowsRender(props) {
     var backk = shadeObj[color] + shade;
     // console.log(backk);
     return (
-      <tr key={item.id} style={{ background: `rgba(${backk})` }}>
-        <td>{item.arrow}</td>
+      <tr
+        key={item.id}
+        style={{
+          background:
+            props.active && props.active.id === item.id
+              ? `rgba(${backk})`
+              : "white",
+        }}
+      >
+        <td>{props.active && props.active.id === item.id && "=>"}</td>
         <td>{item.time}</td>
         <td>{item.colour}</td>
         <td>{item.shade}</td>

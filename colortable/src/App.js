@@ -1,19 +1,19 @@
 import "./App.css";
 import React, { useRef, useState } from "react";
 import RowsRender from "./components/rowsRender";
-import { selectOptions } from "@testing-library/user-event/dist/select-options";
-let globalColour;
+// let globalColour;
 let id;
 let globalIndex;
 
 function App() {
-  var colours = ["red", "green", "yellow", "orange", "blue"];
+  const colours = ["red", "green", "yellow", "orange", "blue"];
 
   const [result, setResult] = useState([]);
   const [paused, setPaused] = useState(true);
   const [colourBg, setColourBg] = useState();
   const [showData, setShowData] = useState();
-
+  const [currentResult, setCurrentResult] = useState();
+  // let currentResult = {};
   const inputUseRef = useRef();
 
   function addRowsHandler() {
@@ -37,7 +37,15 @@ function App() {
     if (paused) {
       setPaused(false);
       var currentTime = 0;
-      var index = 0;
+      var index;
+      if (!currentResult) {
+        index = 0;
+        setCurrentResult(result[0]);
+      } else {
+        index = result.findIndex((element) => {
+          return element.id === currentResult.id;
+        });
+      }
       setColourBg(result[index].colour);
 
       globalIndex = index;
@@ -57,16 +65,19 @@ function App() {
           currentTime = 0;
           if (index !== result.length) {
             setColourBg(result[index].colour);
-            globalColour = result[index].colour;
+
+            setCurrentResult(result[index]);
           } else {
             setPaused(true);
             setColourBg("white");
+            setCurrentResult();
+            inputUseRef.current.value = "";
           }
         }
       }, 10);
     } else {
       setPaused(true);
-      setShowData(result[globalIndex].time);
+      // setShowData(result[globalIndex].time);
       clearInterval(id);
     }
   };
@@ -94,7 +105,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <RowsRender items={result} />
+              <RowsRender items={result} active={currentResult} />
             </tbody>
           </table>
         </div>
