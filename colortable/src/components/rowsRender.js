@@ -1,4 +1,5 @@
 function RowsRender(props) {
+  // console.log(props.items);
   let shadeObj = {
     red: "255,0,0,",
 
@@ -11,17 +12,17 @@ function RowsRender(props) {
     orange: "255,165,0,",
   };
 
-  return props.result.map((items) => {
-    var color = items.colour;
-    var shade = items.shade;
+  return props.items.map((item) => {
+    var color = item.colour;
+    var shade = item.shade;
     var backk = shadeObj[color] + shade;
-    console.log(backk);
+    // console.log(backk);
     return (
-      <tr key={items.id} style={{ background: `rgba(${backk})` }}>
-        <td>{items.arrow}</td>
-        <td>{items.time}</td>
-        <td>{items.colour}</td>
-        <td>{items.shade}</td>
+      <tr key={item.id} style={{ background: `rgba(${backk})` }}>
+        <td>{item.arrow}</td>
+        <td>{item.time}</td>
+        <td>{item.colour}</td>
+        <td>{item.shade}</td>
       </tr>
     );
   });

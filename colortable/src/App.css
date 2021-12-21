@@ -97,3 +97,29 @@ button{
   align-items: center;
   
 }
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 1000px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.Box{
+  background-color: lightgrey;
+  width: 150px;
+  height:150px;
+ 
+  padding: 50px;
+  /* margin: 20px; */
+}
