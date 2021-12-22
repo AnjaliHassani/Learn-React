@@ -4,7 +4,8 @@ import RowsRender from "./components/rowsRender";
 // let globalColour;
 let id;
 // let global time;
-// let globalIndex;
+// var rowFlag = 0;
+// var divHeight;
 
 function App() {
   const colours = ["red", "green", "yellow", "orange", "blue"];
@@ -14,6 +15,7 @@ function App() {
   const [colourBg, setColourBg] = useState();
   const [showData, setShowData] = useState();
   const [currentResult, setCurrentResult] = useState();
+  const [height, setHeight] = useState(980);
   // let currentResult = {};
   const inputUseRef = useRef();
   const currentTimeRef = useRef();
@@ -33,6 +35,13 @@ function App() {
       }
       setResult(arr);
     }
+    setColourBg("white");
+    clearInterval(id);
+    setCurrentResult();
+    setShowData(0);
+    setPaused(true);
+
+    // console.log("this is divheifgt", divheight);
   }
 
   const playButtonHandler = () => {
@@ -42,10 +51,10 @@ function App() {
       var index;
       if (+currentTimeRef.current.innerHTML > 0) {
         currentTime = +currentTimeRef.current.innerHTML;
-        console.log("if is working");
-        console.log(currentTime);
+        // console.log("if is working");
+        // console.log(currentTime);
       } else {
-        console.log("else is working");
+        // console.log("else is working");
 
         currentTime = 0;
       }
@@ -70,7 +79,7 @@ function App() {
         }
 
         if (currentTime === result[index].time) {
-          console.log(index);
+          // console.log(index);
 
           index++;
           // globalIndex = index;
@@ -99,7 +108,11 @@ function App() {
   return (
     <div>
       <div className="row">
-        <div className="column" style={{ background: `${colourBg}` }}>
+        <div
+          className="column"
+          style={{ background: `${colourBg}`, height: `${height}px` }}
+          // style={{ height:500 px }}
+        >
           <div className="Box1" ref={currentTimeRef}>
             {showData}
           </div>
@@ -111,6 +124,7 @@ function App() {
             step="1"
             min="1"
             ref={inputUseRef}
+            placeholder="Enter the number of Rows"
           ></input>
           <button onClick={addRowsHandler}>addrows</button>{" "}
           <button onClick={playButtonHandler}>{paused ? "▶" : "| |"}</button>
@@ -124,11 +138,18 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <RowsRender items={result} active={currentResult} />
+              <RowsRender
+                items={result}
+                active={currentResult}
+                divHeight={setHeight}
+              />
             </tbody>
           </table>
         </div>
-        <div className="column" style={{ background: `${colourBg}` }}>
+        <div
+          className="column"
+          style={{ background: `${colourBg}`, height: `${height}px` }}
+        >
           <div className="Box" ref={currentTimeRef}>
             {showData}
           </div>

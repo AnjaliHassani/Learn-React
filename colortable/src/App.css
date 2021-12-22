@@ -32,8 +32,10 @@ border: 5px solid #FFFF00; */
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 50%;
-  margin: auto;
+  width: 100%;
+  /* margin: auto; */
+  margin-top: 30px;
+  /* height: 100%; */
 
 }
 
@@ -61,6 +63,7 @@ border: 5px solid #FFFF00; */
 
 button {
   margin: auto;
+  margin-left: 50px;
 }
 
 
@@ -101,7 +104,7 @@ button {
 }
 
 #inputid {
-  margin: 10px;
+  margin-left: 100px;
 }
 
 #divid {
@@ -117,8 +120,11 @@ button {
 .column {
   float: left;
   width: 33.33%;
-  padding: 10px;
-  height: 980px;
+  /* padding: 10px;
+   */
+  padding-top: 10px;
+  /* height: 980px; */
+  /* height: auto; */
   /* Should be removed. Only for demonstration */
 }
 
