@@ -1,11 +1,8 @@
 import "./App.css";
 import React, { useRef, useState } from "react";
 import RowsRender from "./components/rowsRender";
-// let globalColour;
+
 let id;
-// let global time;
-// var rowFlag = 0;
-// var divHeight;
 
 function App() {
   const colours = ["red", "green", "yellow", "orange", "blue"];
@@ -16,7 +13,7 @@ function App() {
   const [showData, setShowData] = useState();
   const [currentResult, setCurrentResult] = useState();
   const [height, setHeight] = useState(980);
-  // let currentResult = {};
+
   const inputUseRef = useRef();
   const currentTimeRef = useRef();
   function addRowsHandler() {
@@ -26,7 +23,7 @@ function App() {
       for (let i = 0; i < numrows; i++) {
         arr.push({
           id: Math.random(),
-          arrow: "=>",
+          // arrow: "=>",
           time: (Math.floor(Math.random() * (250 - 10 + 1)) + 10) * 10,
           colour: colours[Math.floor(Math.random() * colours.length)],
 
@@ -40,8 +37,6 @@ function App() {
     setCurrentResult();
     setShowData(0);
     setPaused(true);
-
-    // console.log("this is divheifgt", divheight);
   }
 
   const playButtonHandler = () => {
@@ -51,14 +46,10 @@ function App() {
       var index;
       if (+currentTimeRef.current.innerHTML > 0) {
         currentTime = +currentTimeRef.current.innerHTML;
-        // console.log("if is working");
-        // console.log(currentTime);
       } else {
-        // console.log("else is working");
-
         currentTime = 0;
       }
-      // var index;
+
       if (!currentResult) {
         index = 0;
         setCurrentResult(result[0]);
@@ -69,8 +60,6 @@ function App() {
       }
       setColourBg(result[index].colour);
 
-      // globalIndex = index;
-
       id = setInterval(() => {
         currentTime += 10;
         if (index < result.length) setShowData(currentTime);
@@ -79,10 +68,8 @@ function App() {
         }
 
         if (currentTime === result[index].time) {
-          // console.log(index);
-
           index++;
-          // globalIndex = index;
+
           currentTime = 0;
           if (index !== result.length) {
             setColourBg(result[index].colour);
@@ -111,7 +98,6 @@ function App() {
         <div
           className="column"
           style={{ background: `${colourBg}`, height: `${height}px` }}
-          // style={{ height:500 px }}
         >
           <div className="Box1" ref={currentTimeRef}>
             {showData}

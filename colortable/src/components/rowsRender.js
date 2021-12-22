@@ -5,7 +5,7 @@ function RowsRender(props) {
     if (tableHeight >= 980) props.divHeight(tableHeight);
     else props.divHeight(980);
   } catch (e) {}
-  // console.log(props.items);
+
   let shadeObj = {
     red: "255,0,0,",
 
@@ -22,7 +22,7 @@ function RowsRender(props) {
     var color = item.colour;
     var shade = item.shade;
     var backk = shadeObj[color] + shade;
-    // console.log(backk);
+
     return (
       <tr
         key={item.id}
