@@ -118,7 +118,7 @@ button {
   float: left;
   width: 33.33%;
   padding: 10px;
-  height: 950px;
+  height: 980px;
   /* Should be removed. Only for demonstration */
 }
 
@@ -129,19 +129,33 @@ button {
   clear: both;
 }
 
-.Box {
+.Box1 {
   background-color: rgb(6, 5, 7);
   width: 150px;
   height: 150px;
   position: fixed;
   right: 30px;
   bottom: 30px;
-  /* width: 200px;
-  height:40px; */
-  background-color: lightblue;
-  padding: 5px;
-  font-size: 30px;
 
-  /* padding: 50px; */
-  /* margin: 20px; */
+  padding: 50px;
+  font-size: 30px;
+  color: white;
+
+
+
+}
+
+.Box {
+  background-color: rgb(6, 5, 7);
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+
+  padding: 50px;
+  font-size: 30px;
+  color: white;
+
+
 }

@@ -86,17 +86,12 @@ function App() {
               inputUseRef.current.value = "";
               setShowData(0);
             }, 1000);
-
-            // setPaused(true);
-            // setColourBg("white");
-            // setCurrentResult();
-            // inputUseRef.current.value = "";
           }
         }
       }, 10);
     } else {
       setPaused(true);
-      // setShowData(result[globalIndex].time);
+
       clearInterval(id);
     }
   };
@@ -104,7 +99,7 @@ function App() {
     <div>
       <div className="row">
         <div className="column" style={{ background: `${colourBg}` }}>
-          <div className="Box" ref={currentTimeRef}>
+          <div className="Box1" ref={currentTimeRef}>
             {showData}
           </div>
         </div>
@@ -142,3 +137,5 @@ function App() {
   );
 }
 export default App;
+
+// maid ko batao ki upar wali bhabhi 1 30 aayegi station gyi hai.
