@@ -19,19 +19,20 @@ function App() {
   const currentTimeRef = useRef();
   function addRowsHandler() {
     let numrows = inputUseRef.current.value;
+    if (numrows > 0) {
+      let arr = [];
+      for (let i = 0; i < numrows; i++) {
+        arr.push({
+          id: Math.random(),
+          arrow: "=>",
+          time: (Math.floor(Math.random() * (250 - 10 + 1)) + 10) * 10,
+          colour: colours[Math.floor(Math.random() * colours.length)],
 
-    let arr = [];
-    for (let i = 0; i < numrows; i++) {
-      arr.push({
-        id: Math.random(),
-        arrow: "=>",
-        time: (Math.floor(Math.random() * (250 - 10 + 1)) + 10) * 10,
-        colour: colours[Math.floor(Math.random() * colours.length)],
-
-        shade: Math.random().toFixed(1),
-      });
+          shade: Math.random().toFixed(1),
+        });
+      }
+      setResult(arr);
     }
-    setResult(arr);
   }
 
   const playButtonHandler = () => {
@@ -137,5 +138,3 @@ function App() {
   );
 }
 export default App;
-
-// maid ko batao ki upar wali bhabhi 1 30 aayegi station gyi hai.
