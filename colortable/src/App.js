@@ -3,7 +3,8 @@ import React, { useRef, useState } from "react";
 import RowsRender from "./components/rowsRender";
 // let globalColour;
 let id;
-let globalIndex;
+// let global time;
+// let globalIndex;
 
 function App() {
   const colours = ["red", "green", "yellow", "orange", "blue"];
@@ -15,7 +16,7 @@ function App() {
   const [currentResult, setCurrentResult] = useState();
   // let currentResult = {};
   const inputUseRef = useRef();
-
+  const currentTimeRef = useRef();
   function addRowsHandler() {
     let numrows = inputUseRef.current.value;
 
@@ -36,8 +37,18 @@ function App() {
   const playButtonHandler = () => {
     if (paused) {
       setPaused(false);
-      var currentTime = 0;
+      var currentTime;
       var index;
+      if (+currentTimeRef.current.innerHTML > 0) {
+        currentTime = +currentTimeRef.current.innerHTML;
+        console.log("if is working");
+        console.log(currentTime);
+      } else {
+        console.log("else is working");
+
+        currentTime = 0;
+      }
+      // var index;
       if (!currentResult) {
         index = 0;
         setCurrentResult(result[0]);
@@ -48,7 +59,7 @@ function App() {
       }
       setColourBg(result[index].colour);
 
-      globalIndex = index;
+      // globalIndex = index;
 
       id = setInterval(() => {
         currentTime += 10;
@@ -61,17 +72,25 @@ function App() {
           console.log(index);
 
           index++;
-          globalIndex = index;
+          // globalIndex = index;
           currentTime = 0;
           if (index !== result.length) {
             setColourBg(result[index].colour);
 
             setCurrentResult(result[index]);
           } else {
-            setPaused(true);
-            setColourBg("white");
-            setCurrentResult();
-            inputUseRef.current.value = "";
+            setTimeout(() => {
+              setPaused(true);
+              setColourBg("white");
+              setCurrentResult();
+              inputUseRef.current.value = "";
+              setShowData(0);
+            }, 1000);
+
+            // setPaused(true);
+            // setColourBg("white");
+            // setCurrentResult();
+            // inputUseRef.current.value = "";
           }
         }
       }, 10);
@@ -84,7 +103,11 @@ function App() {
   return (
     <div>
       <div className="row">
-        <div className="column" style={{ background: `${colourBg}` }}></div>
+        <div className="column" style={{ background: `${colourBg}` }}>
+          <div className="Box" ref={currentTimeRef}>
+            {showData}
+          </div>
+        </div>
         <div className="column divid">
           <input
             id="inputid"
@@ -110,7 +133,9 @@ function App() {
           </table>
         </div>
         <div className="column" style={{ background: `${colourBg}` }}>
-          <div className="Box">{showData}</div>
+          <div className="Box" ref={currentTimeRef}>
+            {showData}
+          </div>
         </div>
       </div>
     </div>
