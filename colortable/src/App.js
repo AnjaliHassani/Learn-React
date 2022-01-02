@@ -12,31 +12,35 @@ function App() {
   const [colourBg, setColourBg] = useState();
   const [showData, setShowData] = useState();
   const [currentResult, setCurrentResult] = useState();
-  const [height, setHeight] = useState(980);
+  // const [height, setHeight] = useState(980);
+  const height = window.innerHeight;
 
   const inputUseRef = useRef();
   const currentTimeRef = useRef();
-  function addRowsHandler() {
-    let numrows = inputUseRef.current.value;
-    if (numrows > 0) {
-      let arr = [];
-      for (let i = 0; i < numrows; i++) {
-        arr.push({
-          id: Math.random(),
-          // arrow: "=>",
-          time: (Math.floor(Math.random() * (250 - 10 + 1)) + 10) * 10,
-          colour: colours[Math.floor(Math.random() * colours.length)],
+  function addRowsHandler(event) {
+    console.log(event);
+    if (event.type === "click" || event.keyCode === 13) {
+      let numrows = inputUseRef.current.value;
+      if (numrows > 0) {
+        let arr = [];
+        for (let i = 0; i < numrows; i++) {
+          arr.push({
+            id: Math.random(),
+            // arrow: "=>",
+            time: (Math.floor(Math.random() * (250 - 10 + 1)) + 10) * 10,
+            colour: colours[Math.floor(Math.random() * colours.length)],
 
-          shade: Math.random().toFixed(1),
-        });
+            shade: Math.random().toFixed(1),
+          });
+        }
+        setResult(arr);
       }
-      setResult(arr);
+      setColourBg("white");
+      clearInterval(id);
+      setCurrentResult();
+      setShowData(0);
+      setPaused(true);
     }
-    setColourBg("white");
-    clearInterval(id);
-    setCurrentResult();
-    setShowData(0);
-    setPaused(true);
   }
 
   const playButtonHandler = () => {
@@ -88,7 +92,7 @@ function App() {
       }, 10);
     } else {
       setPaused(true);
-
+      setColourBg("black");
       clearInterval(id);
     }
   };
@@ -103,7 +107,10 @@ function App() {
             {showData}
           </div>
         </div>
-        <div className="column divid">
+        <div
+          className="column divid columnscroll"
+          style={{ height: `${height}px` }}
+        >
           <input
             id="inputid"
             type="number"
@@ -111,6 +118,7 @@ function App() {
             min="1"
             ref={inputUseRef}
             placeholder="Enter the number of Rows"
+            onKeyUp={addRowsHandler}
           ></input>
           <button onClick={addRowsHandler}>addrows</button>{" "}
           <button onClick={playButtonHandler}>{paused ? "▶" : "| |"}</button>
@@ -127,7 +135,7 @@ function App() {
               <RowsRender
                 items={result}
                 active={currentResult}
-                divHeight={setHeight}
+                // divHeight={setHeight}
               />
             </tbody>
           </table>

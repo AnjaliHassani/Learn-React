@@ -1,10 +1,12 @@
 function RowsRender(props) {
-  try {
-    var tableHeight =
-      document.getElementsByClassName("column divid")[0].offsetHeight;
-    if (tableHeight >= 980) props.divHeight(tableHeight);
-    else props.divHeight(980);
-  } catch (e) {}
+  // try {
+  //   var tableHeight =
+  //     document.getElementsByClassName("column divid")[0].offsetHeight;
+  //   if (tableHeight >= 980) props.divHeight(tableHeight);
+  //   else props.divHeight(980);
+  // } catch (e) {}
+  // var height = window.innerHeight;
+  // props.divHeight(height);
 
   let shadeObj = {
     red: "255,0,0,",
