@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./styles.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 function PlayVideo(props) {
@@ -13,11 +14,13 @@ function PlayVideo(props) {
   //   let p = len - index;
   //   blah.substring(-p);
   // }
+  const query = new URLSearchParams(useLocation().search);
+  const search = query.get("id");
 
   return (
     <div className="App">
       {/* <h1>Youtube Embed</h1> */}
-      <YoutubeEmbed embedId={"Y8Tko2YC5hA"} />
+      <YoutubeEmbed embedId={search} />
     </div>
   );
 }

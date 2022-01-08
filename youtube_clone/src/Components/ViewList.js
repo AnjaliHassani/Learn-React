@@ -1,15 +1,20 @@
 import "./viewList.css";
 // import history from "./../history";
-// import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ViewList(props) {
   //   const history = useHistory();
+  // let videoKey;
   if (props.movieArray.length > 0) {
     const listItems = props.movieArray.map((element) => {
       return (
         <tr key={Math.random()}>
           <td>
-            {element.linkKey}
+            <Link to={`/play?id=${element.linkKey.split("=").slice(-1)}`}>
+              {" "}
+              {element.linkKey}
+            </Link>
+
             {/* <button>play</button> */}
           </td>
           <td>"not available"</td>
