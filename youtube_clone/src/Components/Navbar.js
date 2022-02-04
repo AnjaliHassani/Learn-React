@@ -7,7 +7,7 @@ function Navbar() {
     <div className="topnav" id="myTopnav">
       <NavLink to="/">Upload</NavLink>{" "}
       <NavLink to="/viewlist">ViewList</NavLink>
-      <NavLink to="/play">PlayVideo</NavLink>
+      {/* <NavLink to="/play">PlayVideo</NavLink> */}
     </div>
   );
 }

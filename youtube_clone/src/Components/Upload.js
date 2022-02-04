@@ -22,7 +22,7 @@ function Upload(props) {
   };
   return (
     <div>
-      <form>
+      <form onSubmit={submitFunction}>
         <label htmlFor="upload">put your link here</label>
         <input
           id="upload"
@@ -31,9 +31,7 @@ function Upload(props) {
           ref={inputRef}
           onChange={() => setData()}
         ></input>
-        <button onClick={submitFunction} onClicktype="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
       {data && (
         <div
